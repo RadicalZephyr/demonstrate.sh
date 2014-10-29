@@ -49,6 +49,11 @@ ENDC='\033[0m'
 # Now, while there are lines left in $SCRIPT
 while read line
 do
+    if [[ "$line" = "" ]]
+    then
+        continue
+    fi
+
     sleep 0.1
     echo -e -n ${GREEN}"demonstrating@$SCRIPT"${ENDC}" "${BLUE}$(pwd | python butlast.py)"\$"${ENDC}
     read -d' ' <&3
