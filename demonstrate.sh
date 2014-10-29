@@ -50,11 +50,12 @@ ENDC='\033[0m'
 while read line
 do
     sleep 0.1
-    echo -e -n ${GREEN}"demonstrating@$SCRIPT"${ENDC}" "${BLUE}$(pwd | python butlast.py)"\$"${ENDC}" "
-    sleep 1
-    read -p "$line" input <&3
+    echo -e -n ${GREEN}"demonstrating@$SCRIPT"${ENDC}" "${BLUE}$(pwd | python butlast.py)"\$"${ENDC}
+    read -d' ' <&3
+    read -p "$line" <&3
     echo $line >&4
 done < "$SCRIPT"
+
 [[ "$DEBUG" = true ]] && set -x
 sleep 0.1
 
