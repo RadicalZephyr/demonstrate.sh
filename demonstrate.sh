@@ -64,4 +64,6 @@ done < "$SCRIPT"
 [[ "$DEBUG" = true ]] && set -x
 sleep 0.1
 
+exec 4>&-
+wait $PID
 rm $FIFONAME
