@@ -64,6 +64,9 @@ done < "$SCRIPT"
 [[ "$DEBUG" = true ]] && set -x
 sleep 0.1
 
-exec 4>&-
+echo "Closing the FIFO"
+exec 4>&- 4<&-
+
+echo "Wait on the interpreter PID"
 wait $PID
 rm $FIFONAME
