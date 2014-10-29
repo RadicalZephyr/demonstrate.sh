@@ -37,14 +37,17 @@ PID=$!
 # Save current stdout to FD 3
 exec 3>&1
 
-GREEN='\e[1;32m'
-BLUE='\e[1;34m'
-WHITE='\e[0;37m'
+GREEN='\033[1;32m'
+BLUE='\033[1;34m'
+WHITE='\033[0;37m'
+ENDC='\033[0m'
 
 # Now, while there are lines left in $SCRIPT
 while read line
 do
-    read -p ${GREEN}"demonstrating@$SCRIPT"" "${BLUE}$(pwd | python butlast.py)"\$"${WHITE}" $line" input <&3
+    echo -e -n ${GREEN}"demonstrating@$SCRIPT"${ENDC}" "
+    echo -e -n ${BLUE}$(pwd | python butlast.py)"\$"${ENDC}" "
+    read -p "$line" input <&3
     #echo $line >&4
 done < "$SCRIPT"
 
