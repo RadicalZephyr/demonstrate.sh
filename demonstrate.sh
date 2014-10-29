@@ -31,7 +31,7 @@ exec 4<> $FIFONAME
 
 # Setup the long running process to communicate with
 # And capture it's PID for waiting and killing
-$INTERPRETER <&4 "$ARGS" &
+"$INTERPRETER" $ARGS <&4 &
 PID=$!
 
 # Save current stdout to FD 3
