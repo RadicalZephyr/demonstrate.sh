@@ -69,7 +69,6 @@ echo "Closing the FIFO"
 exec 4>&-
 
 echo "Wait on the interpreter PID"
-
-kill $PID || kill -9 $PID
+wait $PID
 
 [[ -p "$FIFONAME" ]] && rm $FIFONAME
