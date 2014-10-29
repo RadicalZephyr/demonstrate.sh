@@ -68,5 +68,7 @@ echo "Closing the FIFO"
 exec 4>&- 4<&-
 
 echo "Wait on the interpreter PID"
-wait $PID
+
+kill $PID || kill -9 $PID
+
 rm $FIFONAME
