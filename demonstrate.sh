@@ -28,12 +28,13 @@ fi
 FIFONAME=$(mktemp -u)
 mkfifo -m 0600 $FIFONAME
 
-exec 4<> $FIFONAME
-
 # Setup the long running process to communicate with
 # And capture it's PID for waiting and killing
-"$INTERPRETER" $ARGS <&4 &
+"$INTERPRETER" $ARGS < $FIFONAME &
 PID=$!
+
+# Only open the fifo for writing
+exec 4> $FIFONAME
 
 # Save current stdout to FD 3
 exec 3>&1
@@ -65,7 +66,7 @@ done < "$SCRIPT"
 sleep 0.1
 
 echo "Closing the FIFO"
-exec 4>&- 4<&-
+exec 4>&-
 
 echo "Wait on the interpreter PID"
 
