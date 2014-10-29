@@ -48,7 +48,7 @@ do
     echo -e -n ${GREEN}"demonstrating@$SCRIPT"${ENDC}" "
     echo -e -n ${BLUE}$(pwd | python butlast.py)"\$"${ENDC}" "
     read -p "$line" input <&3
-    #echo $line >&4
+    echo $line >&4
 done < "$SCRIPT"
 
 # Cleanup FIFO
