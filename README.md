@@ -1,5 +1,5 @@
 demonstrate.sh
---------------
+==============
 
 Does live coding make you nervous?
 
@@ -15,7 +15,7 @@ be fed to the interpreter and the output from it will appear as though
 you had executed it directly! Wash, rinse, repeat!
 
 An Example
-==========
+----------
 
 There's a demonstration script included in the repository. This is how
 you should run it:
