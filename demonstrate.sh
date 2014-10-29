@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 set -e
+[[ "$DEBUG" = true ]] && set -x
 
 # Process the arguments, should be:
 #   demonstrate.sh <script> <interpreter> [<args...>]
@@ -42,6 +43,9 @@ BLUE='\033[1;34m'
 WHITE='\033[0;37m'
 ENDC='\033[0m'
 
+[[ "$DEBUG" = true ]] && set +x
+
+
 # Now, while there are lines left in $SCRIPT
 while read line
 do
@@ -51,5 +55,7 @@ do
     read -p "$line" input <&3
     echo $line >&4
 done < "$SCRIPT"
+[[ "$DEBUG" = true ]] && set -x
+sleep 0.1
 
 rm $FIFONAME
