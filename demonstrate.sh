@@ -45,12 +45,11 @@ ENDC='\033[0m'
 # Now, while there are lines left in $SCRIPT
 while read line
 do
-    sleep 0.5
-    echo -e -n ${GREEN}"demonstrating@$SCRIPT"${ENDC}" "
-    echo -e -n ${BLUE}$(pwd | python butlast.py)"\$"${ENDC}" "
+    sleep 0.1
+    echo -e -n ${GREEN}"demonstrating@$SCRIPT"${ENDC}" "${BLUE}$(pwd | python butlast.py)"\$"${ENDC}" "
+    sleep 1
     read -p "$line" input <&3
     echo $line >&4
 done < "$SCRIPT"
 
-# Cleanup FIFO
 rm $FIFONAME
