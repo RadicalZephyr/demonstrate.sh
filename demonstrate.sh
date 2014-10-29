@@ -40,8 +40,7 @@ exec 3>&1
 # Now, while there are lines left in $SCRIPT
 while read line
 do
-    read input <&3
-    echo $line
+    read -p "demonstrating@$SCRIPT "$(pwd | python butlast.py)"\$ $line" input <&3
     #echo $line >&4
 done < "$SCRIPT"
 
