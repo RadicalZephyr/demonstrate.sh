@@ -14,9 +14,13 @@ fi
 SCRIPT="$1"
 INTERPRETER="$2"
 
-shift 2
-#ARGS="$@"
-
+# If we have enough arguments, then pass the extras along to the
+# interpreter
+if [[ $# -ge 3 ]]
+then
+    shift 2
+    ARGS="$@"
+fi
 
 # Make a temporary FIFO to allow communication between this shell and
 # the interpreter
