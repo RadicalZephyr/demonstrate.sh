@@ -9,18 +9,31 @@ SCRIPT="$1"
 INTERPRETER="$2"
 
 shift 2
-ARGS="$@"
+#ARGS="$@"
 
-unshift
+
+# Make a temporary FIFO to allow communication between this shell and
+# the interpreter
+FIFONAME=$(mktemp -u)
+mkfifo -m 0600 $FIFONAME
+
+exec 4<> $FIFONAME
 
 # Setup the long running process to communicate with
 # And capture it's PID for waiting and killing
-
-$INTERPRETER <&3 "$ARGS" &
+$INTERPRETER <&4 "$ARGS" &
 PID=$!
 
+# Save current stdout to FD 3
+exec 3>&1
+
 # Now, while there are lines left in $SCRIPT
-while read $line
+while read line
 do
+    read input <&3
     echo $line
+    #echo $line >&4
 done < "$SCRIPT"
+
+# Cleanup FIFO
+rm $FIFONAME
