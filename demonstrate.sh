@@ -4,6 +4,12 @@ set -e
 
 # Process the arguments, should be:
 #   demonstrate.sh <script> <interpreter> [<args...>]
+if [[ $# -lt 2 ]]
+then
+    echo "Usage: demonstrate.sh <script> <interpreter> [<args...>]"
+    echo "  Must supply both a script and an interpreter"
+    exit 1
+fi
 
 SCRIPT="$1"
 INTERPRETER="$2"
