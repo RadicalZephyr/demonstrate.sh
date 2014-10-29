@@ -14,6 +14,13 @@ ARGS="$@"
 unshift
 
 # Setup the long running process to communicate with
+# And capture it's PID for waiting and killing
 
-$INTERPRETER <&3 &
-PID=
+$INTERPRETER <&3 "$ARGS" &
+PID=$!
+
+# Now, while there are lines left in $SCRIPT
+while read $line
+do
+    echo $line
+done < "$SCRIPT"
