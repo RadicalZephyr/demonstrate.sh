@@ -71,4 +71,4 @@ echo "Wait on the interpreter PID"
 
 kill $PID || kill -9 $PID
 
-rm $FIFONAME
+[[ -p "$FIFONAME" ]] && rm $FIFONAME
