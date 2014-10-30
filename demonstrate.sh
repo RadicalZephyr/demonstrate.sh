@@ -40,12 +40,14 @@ exec 4> $FIFONAME
 exec 3>&1
 
 case "$INTERPRETER" in
-    bash    ) PROMPT=${GREEN}"demonstrating@$SCRIPT"${ENDC}" "${BLUE}"\$"${ENDC} ;;
+    bash    ) PROMPT='${GREEN}"demonstrating@$SCRIPT"${ENDC}" "${BLUE}$(pwd | python butlast.py)"\$"${ENDC}' ;;
     python* ) PROMPT='>>>' ;;
     irb     ) PROMPT='irb(main):001:0>' ;;
     node    ) PROMPT='>' ;;
     coffee  ) PROMPT='coffee>' ;;
 esac
+
+PROMPT="echo -e -n $PROMPT"
 
 GREEN='\033[1;32m'
 BLUE='\033[1;34m'
@@ -63,7 +65,7 @@ do
     fi
 
     sleep 0.1
-    echo -e -n "$PROMPT"
+    eval "$PROMPT"
     read -d' ' <&3
     read -p "$line" <&3
     echo $line >&4
