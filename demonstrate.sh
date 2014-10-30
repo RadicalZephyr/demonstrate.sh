@@ -39,13 +39,18 @@ exec 4> $FIFONAME
 # Save current stdout to FD 3
 exec 3>&1
 
+case "$INTERPRETER" in
+    bash    ) PROMPT=${GREEN}"demonstrating@$SCRIPT"${ENDC}" "${BLUE}"\$"${ENDC} ;;
+    python* ) PROMPT='>>>' ;;
+    irb     ) PROMPT='irb(main):001:0>' ;;
+esac
+
 GREEN='\033[1;32m'
 BLUE='\033[1;34m'
 WHITE='\033[0;37m'
 ENDC='\033[0m'
 
 [[ "$DEBUG" = true ]] && set +x
-
 
 # Now, while there are lines left in $SCRIPT
 while read line
@@ -56,7 +61,7 @@ do
     fi
 
     sleep 0.1
-    echo -e -n ${GREEN}"demonstrating@$SCRIPT"${ENDC}" "${BLUE}$(pwd | python butlast.py)"\$"${ENDC}
+    echo -e -n "$PROMPT"
     read -d' ' <&3
     read -p "$line" <&3
     echo $line >&4
