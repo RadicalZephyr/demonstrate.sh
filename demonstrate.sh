@@ -15,6 +15,20 @@ fi
 SCRIPT="$1"
 INTERPRETER="$2"
 
+if [[ ! -f "$SCRIPT" ]]
+then
+    echo "$SCRIPT is not a file..."
+    exit 1
+fi
+
+which "$INTERPRETER" 2>&1 > /dev/null
+if [[ $? -ne 0 ]]
+then
+    echo "$INTERPRETER was not found on path."
+    echo "Maybe you should specify the full path to it?"
+    exit 1
+fi
+
 # If we have enough arguments, then pass the extras along to the
 # interpreter
 if [[ $# -ge 3 ]]
