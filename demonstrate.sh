@@ -40,7 +40,7 @@ exec 4> $FIFONAME
 exec 3>&1
 
 case "$INTERPRETER" in
-    bash    ) PROMPT='${GREEN}"demonstrating@$SCRIPT"${ENDC}" "${BLUE}$(pwd | python butlast.py)"\$"${ENDC}' ;;
+    bash    ) PROMPT='${GREEN}"demonstrating@$SCRIPT"${ENDC}" "${BLUE}$(pwd | python util/butlast.py)"\$"${ENDC}' ;;
     python* ) PROMPT='>>>' ;;
     irb     ) N=1; PROMPT='"irb(main):"$(printf "%03d" $N)":0>"; N=$((N + 1))' ;;
     node    ) PROMPT='>' ;;
@@ -68,7 +68,7 @@ do
     sleep 0.1
     eval "$PROMPT"
     read -d' ' <&3
-    python faketype.py "$line"
+    python util/faketype.py "$line"
     read <&3
     echo $line >&4
 done < "$SCRIPT"
