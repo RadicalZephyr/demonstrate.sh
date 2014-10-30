@@ -80,7 +80,7 @@ do
     fi
 
     sleep 0.1
-    eval "$PROMPT"
+    eval "$PROMPT"" "
     util/faketype "$line"
     read <&3
     echo $line >&4
