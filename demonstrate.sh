@@ -55,6 +55,7 @@ WHITE='\033[0;37m'
 ENDC='\033[0m'
 
 [[ "$DEBUG" = true ]] && set +x
+sleep 0.1
 
 # Now, while there are lines left in $SCRIPT
 while read line
