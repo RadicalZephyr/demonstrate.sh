@@ -68,7 +68,8 @@ do
     sleep 0.1
     eval "$PROMPT"
     read -d' ' <&3
-    read -p "$line" <&3
+    python faketype.py "$line"
+    read <&3
     echo $line >&4
 done < "$SCRIPT"
 
