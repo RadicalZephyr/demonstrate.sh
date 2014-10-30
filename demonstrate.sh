@@ -42,7 +42,7 @@ exec 3>&1
 case "$INTERPRETER" in
     bash    ) PROMPT='${GREEN}"demonstrating@$SCRIPT"${ENDC}" "${BLUE}$(pwd | python butlast.py)"\$"${ENDC}' ;;
     python* ) PROMPT='>>>' ;;
-    irb     ) PROMPT='irb(main):001:0>' ;;
+    irb     ) N=1; PROMPT='"irb(main):"$(printf "%03d" $N)":0>"; N=$((N + 1))' ;;
     node    ) PROMPT='>' ;;
     coffee  ) PROMPT='coffee>' ;;
 esac
