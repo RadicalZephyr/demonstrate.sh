@@ -43,6 +43,8 @@ case "$INTERPRETER" in
     bash    ) PROMPT=${GREEN}"demonstrating@$SCRIPT"${ENDC}" "${BLUE}"\$"${ENDC} ;;
     python* ) PROMPT='>>>' ;;
     irb     ) PROMPT='irb(main):001:0>' ;;
+    node    ) PROMPT='>' ;;
+    coffee  ) PROMPT='coffee>' ;;
 esac
 
 GREEN='\033[1;32m'
