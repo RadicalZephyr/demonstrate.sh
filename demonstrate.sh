@@ -75,6 +75,10 @@ done < "$SCRIPT"
 [[ "$DEBUG" = true ]] && set -x
 sleep 0.1
 
+echo
+echo "----------------"
+echo "Done with script"
+echo
 echo "Closing the FIFO"
 exec 4>&-
 
