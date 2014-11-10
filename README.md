@@ -1,6 +1,8 @@
 demonstrate.sh
 ==============
 
+[![Made at Hacker School](http://img.shields.io/badge/Made_At-Hacker_School-brightgreen.svg)](http://shields.io/)
+
 Does live coding make you nervous?
 
 Have you ever mistyped a command in front of a live audience, several
